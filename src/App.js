@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Map from "./components/map"
+import { useState, useEffect } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function App(){
+  const url = "https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json";
+    const [data, setData] = useState([]);
+  
+    const fetchInfo = () => {
+      return fetch(url)
+        .then((res) => res.json())
+        .then((d) => setData(d))
+    } 
+    useEffect(() => {
+      fetchInfo();
+    }, []);
+return (<Map stations={data?.data?.stations} />) 
 }
+
 
 export default App;
