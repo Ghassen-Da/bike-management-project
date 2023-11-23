@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: urban-sharing
+  template:
+    metadata:
+      labels:
+        app: urban-sharing
+    spec:
+      containers:
+        - name: urban-sharing
+          image: ghcr.io/ghassen-da/bike-management-project:master
+          ports:
+            - containerPort: 3000
