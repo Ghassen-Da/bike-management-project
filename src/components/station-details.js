@@ -12,7 +12,6 @@ export default function StationDetails(props) {
     onClose();
   };
 
-
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle className='dialog-title-container'>

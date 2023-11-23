@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 
 
 function App(){
-  const url = "https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json";
+  const url = process.env.REACT_APP_API_ENDPOINT;
+  console.log(process.env)
     const [data, setData] = useState([]);
   
     const fetchInfo = () => {

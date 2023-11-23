@@ -24,7 +24,7 @@ export default function Map(props) {
   let stations = props.stations
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyD4Wgflkm61GbO6HRQDos0FN6gRI6inHw8"
+    googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY
   })
   
   const [map, setMap] = React.useState(null)
@@ -61,6 +61,7 @@ export default function Map(props) {
         onUnmount={onUnmount}
       >
         {stations?.map(station=>(
+          // Custom Marker to match the design given in the UI
           <Marker
           key={station?.station_id}
             icon={{
@@ -75,11 +76,12 @@ export default function Map(props) {
           />      
         ))
         }
+        {/* Dialog component that gives station details */}
         <StationDetails
-        open={open}
-        onClose={handleDialogClose}
-        station={selectedStation}
-      />
+          open={open}
+          onClose={handleDialogClose}
+          station={selectedStation}
+        />
       </GoogleMap>
   ) : <></>
 }
