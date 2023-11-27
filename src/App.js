@@ -13,7 +13,7 @@ function App(){
     } 
     useEffect(() => {
       fetchInfo();
-    }, []);
+    });
 return (<Map stations={data?.data?.stations} />) 
 }
 
