@@ -66,7 +66,7 @@ export default function Map(props) {
                 onClick={()=>handleDialogOpen(station)}
               />      
             )
-            return null
+          return null
           }
           )
         }
