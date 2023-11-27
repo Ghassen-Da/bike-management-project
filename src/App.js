@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 function App(){
   const url = process.env.REACT_APP_API_ENDPOINT;
-  console.log(process.env)
     const [data, setData] = useState([]);
   
     const fetchInfo = () => {

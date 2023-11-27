@@ -13,7 +13,6 @@ const center = {
   lng: 10.73190903696522
 };
 
-
 export default function Map(props) {
   // This variable is responsible for the dialog box
   const [open, setOpen] = React.useState(false);
@@ -26,24 +25,14 @@ export default function Map(props) {
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY
   })
-  
-  const [map, setMap] = React.useState(null)
-  
+    
   const onLoad = React.useCallback(function callback(map) {
     map.setZoom(14)
-    
-    setMap(map)
   }, [])
-  
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-  
 
   // Responsible for opening the dialog box
   function handleDialogOpen(station){
     setSelectedStation(station);
-    console.log(station);
     setOpen(true);
   }
   
@@ -58,23 +47,26 @@ export default function Map(props) {
         center={center}
         zoom={1}
         onLoad={onLoad}
-        onUnmount={onUnmount}
       >
-        {stations?.map(station=>(
-          // Custom Marker to match the design given in the UI
-          <Marker
-          key={station?.station_id}
-            icon={{
-              path: window.google.maps.SymbolPath.CIRCLE,
-              scale: 5,    
-              fillColor: "black",
-              fillOpacity: 1
-            }}
-            position={{lat: station?.lat,lng: station?.lon}}
-            label={{text:station?.capacity.toString(),color:'#fff', fontSize:"8px"}}
-            onClick={()=>handleDialogOpen(station)}
-          />      
-        ))
+        {stations?.map(station=> {
+          // Only display Marker when station details available.
+          if (station?.station_id && station?.lon && station?.lat && station?.capacity) 
+            return(
+              // Custom Marker to match the design given in the UI
+              <Marker
+              key={station?.station_id}
+                icon={{
+                  path: window.google.maps.SymbolPath.CIRCLE,
+                  scale: 5,    
+                  fillColor: "black",
+                  fillOpacity: 1
+                }}
+                position={{lat: station?.lat,lng: station?.lon}}
+                label={{text:station?.capacity.toString(),color:'#fff', fontSize:"8px"}}
+                onClick={()=>handleDialogOpen(station)}
+              />      
+            )
+          })
         }
         {/* Dialog component that gives station details */}
         <StationDetails
