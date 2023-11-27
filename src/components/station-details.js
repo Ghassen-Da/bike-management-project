@@ -4,6 +4,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import PedalBikeIcon from '@mui/icons-material/PedalBike';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/system/Box';
 import '../App.css'
 
 export default function StationDetails(props) {
@@ -19,7 +20,7 @@ export default function StationDetails(props) {
         Station Details 
         <PedalBikeIcon className='bike-icon' color="success" fontSize='large'/>
       </DialogTitle>
-      <div className='dialog-details-container'>
+      <Box className='dialog-details-container'>
         <Typography>
           <b>Name:</b> {station.name}
         </Typography>
@@ -39,7 +40,7 @@ export default function StationDetails(props) {
         <Typography>
           <b>Virtual?:</b> {station.is_virtual_station?'true':'false'}
         </Typography>    
-      </div>
+      </Box>
     </Dialog>
   );
 }

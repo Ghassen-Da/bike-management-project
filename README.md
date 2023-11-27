@@ -1,4 +1,4 @@
-## This repository presents my work in the bike management application.
+## This repository presents my work in the bike management application
 
 ### To clone the project
 Run: git clone https://github.com/urban-sharing/bike-management-project.git
